@@ -30,12 +30,12 @@ jobs:
       - name: Build VyOS
         working-directory: vyos-build
         run: |
-          ./configure \
+          make clean
+          ./build-vyos-image iso \
             --architecture amd64 \
             --build-by ${GITHUB_ACTOR}@users.noreply.github.com \
             --build-type release \
             --version ${{ env.RELEASE_VERSION }}
-          make iso
           pwd
           ls -lah
           ls -lah build
