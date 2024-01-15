@@ -40,15 +40,6 @@ jobs:
           ls -lah
           ls -lah build
 
-      - name: Create release
-        uses: ncipollo/release-action@v1
-        id: create_release
-        with:
-          body: |
-            VyOS ${{ env.RELEASE_VERSION }} LTS
-          draft: true
-          prerelease: false
-
       - name: Upload release
         uses: svenstaro/upload-release-action@v2
         with:
