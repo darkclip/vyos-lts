@@ -13,8 +13,7 @@ jobs:
       image: vyos/vyos-build:equuleus
       env:
         TZ: Asia/Shanghai
-      workdir: /vyos
-      options: --privileged
+      options: --privileged --workdir /vyos
 
     steps:
       - name: Set env
