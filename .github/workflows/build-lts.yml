@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       # Ref: https://docs.vyos.io/en/latest/contributing/build-vyos.html#build
-      image: vyos/vyos-build:equuleus
+      image: vyos/vyos-build:sagitta
       env:
         TZ: Asia/Shanghai
       options: --privileged
@@ -24,7 +24,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: vyos/vyos-build
-          ref: equuleus
+          ref: sagitta
           path: vyos-build
 
       - name: Build VyOS
