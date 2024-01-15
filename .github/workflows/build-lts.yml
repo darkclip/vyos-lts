@@ -41,24 +41,16 @@ jobs:
           ls -lah build
 
       - name: Create release
-        uses: actions/create-release@master
+        uses: ncipollo/release-action@v1
         id: create_release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
           body: |
             VyOS ${{ env.RELEASE_VERSION }} LTS
           draft: true
           prerelease: false
 
       - name: Upload release
-        uses: actions/upload-release-asset@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: svenstaro/upload-release-action@v2
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: vyos-build/build/vyos-${{ env.RELEASE_VERSION }}-amd64.iso
+          file: vyos-build/build/vyos-${{ env.RELEASE_VERSION }}-amd64.iso
           asset_name: vyos-${{ env.RELEASE_VERSION }}-amd64.iso
-          asset_content_type: application/x-iso9660-image
